@@ -1,0 +1,17 @@
+input = {"a": 1, "b": 2, "c": { "c1": 3, "c2": 4, "c3": { "c11": 5, "c12": 6} }}
+output = {}
+def flat(d, prefix=""):
+    for key, value in d.items():
+        if type(value) is dict:
+            newKey = key
+            if len(prefix) > 0:
+                newKey = prefix + "_" + key
+            flat(value, newKey)
+        else:
+            newKey = key
+            if len(prefix) > 0:
+                newKey = prefix + "_" + key
+            output[newKey] = value
+
+flat(input)
+print(output)
